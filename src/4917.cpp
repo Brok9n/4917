@@ -33,15 +33,51 @@ void cpu::run(void)
 	
 	int halt = 0;
 	
-	for (int i=0; i<16 && !halt; i++){
-		IP = Memory[i];
-		printf("IP = %c\n", IP);
+	for (IP=0; IP<16 && !halt; IP++){
+		IS = Memory[(int)IP];
+		printf("IP = %d\n", IP);
+		printf("IS = %c\n", IS);
 		
-		switch (IP)
+		switch (IS)
 		{
 			case '0':
 			{
 				halt = 1;
+				break;
+			}
+			case '1':
+			{
+				R0 += R1;
+				break;
+			}
+			case '2':
+			{
+				R0 -= R1;
+				break;
+			}
+			case '3':
+			{
+				R0++;
+				break;
+			}
+			case '4':
+			{
+				R1++;
+				break;
+			}
+			case '5':
+			{
+				R0--;
+				break;
+			}
+			case '6':
+			{
+				R1--;
+				break;
+			}
+			case '7':
+			{
+				printf("BEEP!!!\n");
 				break;
 			}	
 		}
